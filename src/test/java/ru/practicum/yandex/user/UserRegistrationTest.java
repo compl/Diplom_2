@@ -12,6 +12,7 @@ public class UserRegistrationTest {
     private User user;
 
     @After
+    @DisplayName("Удаление пользователя из БД")
     public void loginAndDeleteUser() {
         Credentials creds = Credentials.from(user);
         ValidatableResponse response = client.login(creds);

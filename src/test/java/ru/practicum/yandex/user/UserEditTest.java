@@ -17,6 +17,7 @@ public class UserEditTest {
     private String token;
 
     @Before
+    @DisplayName("Регистрация пользователя")
     public void registerAndLoginUser() {
         user = UserGenerator.random();
         response = client.register(user);
@@ -28,6 +29,7 @@ public class UserEditTest {
     }
 
     @After
+    @DisplayName("Удаление пользователя из БД")
     public void deleteUser() {
         ValidatableResponse response = client.delete(token);
         check.deletedSuccessfully(response);

@@ -16,6 +16,7 @@ public class OrderTest {
     private String token;
 
     @Before
+    @DisplayName("Авторизация пользователя")
     public void login() {
         User user = UserGenerator.existing();
         Credentials creds = Credentials.from(user);
