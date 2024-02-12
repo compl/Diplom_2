@@ -10,12 +10,13 @@ public class UserRegistrationTest {
     private final UserClient client = new UserClient();
     private final UserAssertions check = new UserAssertions();
     private User user;
+    private ValidatableResponse response;
 
     @After
     @DisplayName("Удаление пользователя из БД")
     public void loginAndDeleteUser() {
         Credentials creds = Credentials.from(user);
-        ValidatableResponse response = client.login(creds);
+        response = client.login(creds);
         String token = check.loggedInSuccessfully(response);
 
         response = client.delete(token);
@@ -27,7 +28,7 @@ public class UserRegistrationTest {
     public void successfulUserRegistration() {
         user = UserGenerator.random();
 
-        ValidatableResponse response = client.register(user);
+        response = client.register(user);
         check.registeredSuccessfully(response);
     }
 
@@ -36,7 +37,7 @@ public class UserRegistrationTest {
     public void unsuccessfulUserRegistrationWithExistingEmail() {
         user = UserGenerator.random();
 
-        ValidatableResponse response = client.register(user);
+        response = client.register(user);
         check.registeredSuccessfully(response);
 
         response = client.register(user);

@@ -14,6 +14,7 @@ public class OrderTest {
     private final OrderAssertions orderCheck = new OrderAssertions();
     private ValidatableResponse response;
     private String token;
+    private Order order;
 
     @Before
     @DisplayName("Авторизация пользователя")
@@ -41,7 +42,7 @@ public class OrderTest {
     @Test
     @DisplayName("Создание заказа")
     public void successfulOrderCreation() {
-        Order order = OrderGenerator.make();
+        order = OrderGenerator.make();
         response = orderClient.makeOrder(token, order);
         orderCheck.madeOrderSuccessfully(response);
     }
@@ -49,7 +50,7 @@ public class OrderTest {
     @Test
     @DisplayName("Создание заказа неавторизованным пользователем")
     public void unsuccessfulOrderCreationWithoutToken() {
-        Order order = OrderGenerator.make();
+        order = OrderGenerator.make();
         response = orderClient.makeOrder("", order);
         orderCheck.madeOrderSuccessfully(response);
     }
@@ -57,7 +58,7 @@ public class OrderTest {
     @Test
     @DisplayName("Создание заказа без ингридиентов")
     public void unsuccessfulOrderCreationWithoutIngredients() {
-        Order order = OrderGenerator.makeWithoutIngredients();
+        order = OrderGenerator.makeWithoutIngredients();
         response = orderClient.makeOrder(token, order);
         orderCheck.gotErrorWhenMakingOrderWithoutIngredients(response);
     }
@@ -65,7 +66,7 @@ public class OrderTest {
     @Test
     @DisplayName("Создание заказа с невалидным ингридиентом")
     public void unsuccessfulOrderCreationWithInvalidIngredient() {
-        Order order = OrderGenerator.makeWithInvalidIngredient();
+        order = OrderGenerator.makeWithInvalidIngredient();
         response = orderClient.makeOrder(token, order);
         orderCheck.gotErrorWhenMakingOrderWithInvalidIngredient(response);
     }

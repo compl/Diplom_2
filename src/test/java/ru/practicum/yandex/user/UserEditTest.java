@@ -31,7 +31,7 @@ public class UserEditTest {
     @After
     @DisplayName("Удаление пользователя из БД")
     public void deleteUser() {
-        ValidatableResponse response = client.delete(token);
+        response = client.delete(token);
         check.deletedSuccessfully(response);
     }
 
