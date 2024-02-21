@@ -13,11 +13,9 @@ public class UserUnsuccessfulRegistrationTest {
     private final UserAssertions check = new UserAssertions();
 
     private final String field;
-    private final String description;
 
     public UserUnsuccessfulRegistrationTest(String field, String description) {
         this.field = field;
-        this.description = description;
     }
 
     @Parameterized.Parameters(name = "{1}")

@@ -1,13 +1,16 @@
 package ru.practicum.yandex.order;
 
+import ru.practicum.yandex.ingredient.IngredientClient;
+
 import java.util.List;
 
 public class OrderGenerator {
+    private static IngredientClient client = new IngredientClient();
 
-    public static final String BUN_ING_ID = "61c0c5a71d1f82001bdaaa6d";
-    public static final String MAIN_ING_ID = "61c0c5a71d1f82001bdaaa6f";
-    public static final String SAUCE_ING_ID = "61c0c5a71d1f82001bdaaa72";
-    public static final String WRONG_INGREDIENT_ID = "61c0c5a71d1f110555d0";
+    private static final String BUN_ING_ID = client.receiveIngredient("bun");
+    private static final String MAIN_ING_ID = client.receiveIngredient("main");
+    private static final String SAUCE_ING_ID = client.receiveIngredient("sauce");
+    private static final String WRONG_INGREDIENT_ID = "61c0c5a71d1f110555d0";
 
     public static Order make() {
         return new Order(List.of(BUN_ING_ID, MAIN_ING_ID, SAUCE_ING_ID));

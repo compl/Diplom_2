@@ -15,11 +15,9 @@ public class UserUnsuccessfulLoginWithIncorrectDataTest {
     private static final String randomEmail = UserGenerator.random().getEmail();
     private static final String randomPass = UserGenerator.random().getPassword();
     private final Credentials creds;
-    private final String description;
 
     public UserUnsuccessfulLoginWithIncorrectDataTest(Credentials creds, String description) {
         this.creds = creds;
-        this.description = description;
     }
 
     @Parameterized.Parameters(name = "{1}")
